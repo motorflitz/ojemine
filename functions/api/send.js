@@ -18,7 +18,14 @@ export async function onRequestPost(context) {
       to,
       subject: "Neue Nachricht von deiner Website",
       reply_to: email,
-      text: `Von: ${name} <${email}>\n\n${message}`,
+      html: `
+        <h2 style="color:#0a84ff;">Neue Nachricht über deine Website</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>E-Mail:</strong> ${email}</p>
+        <p><strong>Nachricht:</strong><br>${message.replace(/\n/g, "<br>")}</p>
+        <hr>
+        <p style="font-size:12px;color:#999;">Gesendet über das mediaMW-Website-System.</p>
+      `,
     }),
   });
 
